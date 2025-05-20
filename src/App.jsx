@@ -6,15 +6,21 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import TopTrendingTips from "./components/TopTrendingTips";
+import BrowseTips from "./pages/BrowseTips";
+import ExploreGardeners from "./pages/ExploreGardeners";
 import Login from "./pages/Login";
+import MyTips from "./pages/MyTips";
+import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import ShareTip from "./pages/ShareTip";
+import TipDetails from "./pages/TipDetails";
+import UpdateTip from "./pages/UpdateTip";
 
 function App() {
   return (
     <div>
       <Navbar></Navbar>
-      <ShareTip></ShareTip>
+      <NotFound></NotFound>
       <Hero></Hero>
       <FeaturedGardeners></FeaturedGardeners>
       <TopTrendingTips></TopTrendingTips>
