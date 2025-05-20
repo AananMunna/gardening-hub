@@ -19,7 +19,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation with beautiful navlinks */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-">
             <a href="#" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
               <span>Home</span>
             </a>
