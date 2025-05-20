@@ -1,0 +1,103 @@
+import { FaSeedling } from "react-icons/fa";
+
+const dummyTips = [
+  {
+    id: 1,
+    title: "Composting Made Easy",
+    category: "Composting",
+    difficulty: "Easy",
+    image: "https://images.unsplash.com/photo-1560180474-e8563fd75bab",
+  },
+  {
+    id: 2,
+    title: "Pruning Roses Like a Pro",
+    category: "Plant Care",
+    difficulty: "Medium",
+    image: "https://images.unsplash.com/photo-1595152772835-219674b2a8a0",
+  },
+  {
+    id: 3,
+    title: "Hydroponic Basil Guide",
+    category: "Hydroponics",
+    difficulty: "Hard",
+    image: "https://images.unsplash.com/photo-1587049352842-4c0e6f1c177f",
+  },
+  {
+    id: 4,
+    title: "Balcony Jungle Ideas",
+    category: "Balcony Gardening",
+    difficulty: "Easy",
+    image: "https://images.unsplash.com/photo-1615486364771-71a871baae36",
+  },
+  {
+    id: 5,
+    title: "Eco Pest Control",
+    category: "Plant Care",
+    difficulty: "Medium",
+    image: "https://images.unsplash.com/photo-1615812071191-4f5b1147ef94",
+  },
+  {
+    id: 6,
+    title: "Vertical Garden Secrets",
+    category: "Vertical Gardening",
+    difficulty: "Easy",
+    image: "https://images.unsplash.com/photo-1623261193964-b1f207c0d73f",
+  },
+];
+
+const TopTrendingTips = () => {
+  return (
+    <section className="py-16 bg-[#f0f9f2] text-[#2f4f2f]">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold flex items-center justify-center gap-2 text-green-700">
+            <FaSeedling className="text-green-600" />
+            Top Trending Tips
+          </h2>
+          <p className="mt-2 text-lg text-gray-600">
+            Discover expert gardening tips trending right now 🌱
+          </p>
+        </div>
+
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {dummyTips.map((tip) => (
+            <div
+              key={tip.id}
+              className="bg-white shadow-lg rounded-xl overflow-hidden group relative border border-green-100 hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="relative h-52 overflow-hidden">
+                <img
+                  src={tip.image}
+                  alt={tip.title}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                />
+                <div className="absolute top-2 left-2 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                  {tip.category}
+                </div>
+              </div>
+              <div className="p-5 space-y-2">
+                <h3 className="text-xl font-bold text-[#2e7d32] group-hover:text-green-800 transition">
+                  {tip.title}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Difficulty:{" "}
+                  <span className="font-medium text-[#4caf50]">
+                    {tip.difficulty}
+                  </span>
+                </p>
+                <div className="mt-3">
+                  <button className="text-sm px-4 py-2 bg-[#4caf50] text-white rounded-full hover:bg-[#2e7d32] transition duration-300">
+                    Read Tip
+                  </button>
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-300 via-[#a8e6a3] to-green-300 opacity-0 group-hover:opacity-100 transition duration-300" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TopTrendingTips;
