@@ -1,7 +1,79 @@
+import { useContext, useState } from "react";
+import { updateProfile } from "firebase/auth";
+import { useNavigate, Link } from "react-router";
 import { motion } from "framer-motion";
-// import { Link } from "react-router";
+import { AuthContext } from "../context/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const { register, googleLogin } = useContext(AuthContext);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photoURL = form.photoURL.value;
+    const password = form.password.value;
+
+    // Clear old errors
+    setError("");
+
+    register(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        return updateProfile(user, {
+          displayName: name,
+          photoURL: photoURL,
+        });
+      })
+      .then(() => {
+        // console.log("User registered and profile updated!");
+        Swal.fire({
+          title: "User registered and profile updated!",
+          icon: "success",
+          draggable: true,
+        });
+        navigate("/"); // Navigate to home or dashboard
+      })
+      .catch((error) => {
+        console.error("Registration error:", error.message);
+        setError(error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: error.message,
+        });
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        // console.log("Google login successful:", result.user);
+        Swal.fire({
+          title: "Google login successful!",
+          icon: "success",
+          draggable: true,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        // console.error("Google login error:", error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: error.message,
+        });
+        setError(error.message);
+      });
+  };
+
   return (
     <div
       className="min-h-screen bg-cover bg-center flex items-center justify-center"
@@ -19,29 +91,39 @@ const Register = () => {
         <h2 className="text-2xl font-bold text-green-800 text-center mb-6">
           Register to Gardenia
         </h2>
-        <form className="space-y-4">
+        {error && (
+          <p className="text-red-600 text-sm mb-4 text-center">{error}</p>
+        )}
+
+        <form onSubmit={handleRegister} className="space-y-4">
           <input
             type="text"
+            name="name"
             placeholder="Name"
+            required
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-400"
           />
           <input
             type="email"
+            name="email"
             placeholder="Email"
+            required
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-400"
           />
           <input
             type="text"
+            name="photoURL"
             placeholder="Photo URL"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-400"
           />
           <input
             type="password"
+            name="password"
             placeholder="Password"
             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$"
             title="At least 8 characters, including 1 uppercase, 1 lowercase, and 1 special character"
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-400"
             required
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-400"
           />
           <button
             type="submit"
@@ -53,15 +135,18 @@ const Register = () => {
 
         <div className="my-4 text-center text-gray-600">or</div>
 
-        <button className="w-full bg-red-600 text-white font-semibold py-2 rounded-md hover:bg-red-700 transition duration-300">
+        <button
+          onClick={handleGoogleLogin}
+          className="w-full bg-red-600 text-white font-semibold py-2 rounded-md hover:bg-red-700 transition duration-300"
+        >
           Continue with Google
         </button>
 
         <p className="mt-4 text-center text-sm text-gray-700">
           Already have an account?{" "}
-          <a to="/login" className="text-green-700 underline">
+          <Link to="/login" className="text-green-700 underline">
             Login here
-          </a>
+          </Link>
         </p>
       </motion.div>
     </div>

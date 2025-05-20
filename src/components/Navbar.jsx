@@ -1,9 +1,39 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { FaLeaf, FaSun, FaUser, FaTimes, FaBars } from "react-icons/fa";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
+import { AuthContext } from "../context/AuthProvider";
+import Swal from "sweetalert2";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const navigate = useNavigate();
+
+  const {user,logout} = use(AuthContext);
+  console.log(user);
+
+  const handleLogout = () => {
+  logout()
+    .then(() => {
+      // console.log("User signed out successfully.");
+      Swal.fire({
+  title: "Signed out successfully.",
+  icon: "success",
+  draggable: true
+});
+      // Optional: redirect to login or homepage
+      navigate("/");
+    })
+    .catch((error) => {
+      // console.error("Logout error:", error.message);
+      Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Something went wrong!",
+  footer: error.message
+});
+    });
+};
 
   return (
     <nav className="bg-gradient-to-r from-green-700 to-green-600 text-white shadow-lg">
@@ -60,28 +90,28 @@ export default function Navbar() {
             </button>
 
             {/* User Profile Placeholder */}
-            <div className="hidden relative group">
+           {user &&  <div className=" relative group">
               <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center cursor-pointer border-2 border-emerald-300 hover:border-emerald-200 transition-all">
-                <FaUser className="text-white text-lg" />
+                {<img className="rounded-full h-9 w-10" src={user.photoURL} alt="" srcset="" /> || <FaUser className="text-white text-lg" />}
               </div>
               {/* Profile Dropdown */}
               <div className="absolute right-0 mt-3 w-56 bg-white rounded-lg shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 border border-green-100">
                 <div className="px-4 py-3 border-b border-emerald-50">
-                  <p className="text-sm text-gray-800 font-medium">
-                    Jane Gardener
+                  <p className="text-sm text-gray-800 font-medium uppercase">
+                    {user.displayName}
                   </p>
-                  <p className="text-xs text-gray-500">Master Gardener</p>
+                  <p className="text-xs text-gray-500">{user.email}</p>
                 </div>
                 <a
-                  href="#"
-                  className="block px-4 py-3 text-sm text-gray-700 hover:bg-emerald-50 transition-colors"
+                onClick={handleLogout}
+                  className="block px-4 cursor-pointer py-3 text-sm text-gray-700 hover:bg-emerald-50 transition-colors"
                 >
                   Logout
                 </a>
               </div>
-            </div>
+            </div>}
 
-            <div className="flex space-x-2">
+            {!user && <div className="flex space-x-2">
               {/* Login Button */}
               <NavLink to='/login'
                 className="px-6 py-3 cursor-pointer bg-green-700 hover:bg-green-800 text-white font-semibold rounded-full shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1"
@@ -97,7 +127,7 @@ export default function Navbar() {
               >
                 Register
               </NavLink>
-            </div>
+            </div>}
 
             {/* Mobile Menu Button */}
             <button
