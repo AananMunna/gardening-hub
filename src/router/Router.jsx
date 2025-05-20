@@ -5,6 +5,8 @@ import ExploreGardeners from './../pages/ExploreGardeners';
 import BrowseTips from './../pages/BrowseTips';
 import ShareTip from './../pages/ShareTip';
 import MyTips from './../pages/MyTips';
+import Login from './../pages/Login';
+import Register from './../pages/Register';
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +18,8 @@ export const router = createBrowserRouter([
       {path: 'BrowseTips', Component: BrowseTips},
       {path: 'ShareTip', Component: ShareTip},
       {path: 'MyTips', Component: MyTips},
+      {path: 'login', Component: Login},
+      {path: 'register', Component: Register},
     ]
   },
 ]);
