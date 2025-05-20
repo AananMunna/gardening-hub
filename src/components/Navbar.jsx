@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaLeaf, FaSun, FaUser, FaTimes, FaBars } from 'react-icons/fa';
+import { NavLink } from 'react-router';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,22 +20,22 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation with beautiful navlinks */}
-          <div className="hidden md:flex items-center space-x-">
-            <a href="#" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-1">
+            <NavLink to="/" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
               <span>Home</span>
-            </a>
-            <a href="#" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
+            </NavLink>
+            <NavLink to="/ExploreGardeners" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
               <span>Explore Gardeners</span>
-            </a>
-            <a href="#" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
+            </NavLink>
+            <NavLink to="/BrowseTips" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
               <span>Browse Tips</span>
-            </a>
-            <a href="#" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
+            </NavLink>
+            <NavLink to="/ShareTip" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
               <span>Share a Tip</span>
-            </a>
-            <a href="#" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
+            </NavLink>
+            <NavLink to="/MyTips" className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
               <span>My Tips</span>
-            </a>
+            </NavLink>
           </div>
 
           {/* Right Side Controls with more spacing */}
