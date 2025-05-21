@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Swal from "sweetalert2";
+import { AuthContext } from "../context/AuthProvider";
 
 const ShareTip = () => {
-  const userName = "Yahya Gardener";
-  const userEmail = "yahya@gardens.com";
+
+  const {user} = useContext(AuthContext)
+// console.log(user.displayName);
+  const userName = user.displayName;
+  const userEmail = user.email;
 
   const [formData, setFormData] = useState({
     title: "",
@@ -22,23 +27,68 @@ const ShareTip = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Validate all fields
-    const isEmpty = Object.values(formData).some((val) => val.trim() === "");
-    if (isEmpty) {
-      setError(true);
-      return;
-    }
+  // Validate all fields
+  const isEmpty = Object.values(formData).some((val) => val.trim() === "");
+  if (isEmpty) {
+    setError(true);
+    return;
+  }
 
-    setError(false);
-    console.log({
-      ...formData,
-      userName,
-      userEmail,
-    });
+  setError(false);
+
+  const tipData = {
+    ...formData,
+    userName,
+    userEmail,
   };
+
+  fetch("http://localhost:3000/tips", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(tipData),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.insertedId) {
+        Swal.fire({
+          title: "Data added successfully to Database!",
+          icon: "success",
+          draggable: true,
+        });
+
+        //  Reset form after successful submission
+        setFormData({
+          title: "",
+          topic: "",
+          difficulty: "",
+          imageUrl: "",
+          category: "",
+          availability: "",
+          description: "",
+        });
+
+      } else {
+        Swal.fire({
+          title: "Failed to add tip!",
+          icon: "error",
+        });
+      }
+    })
+    .catch((err) => {
+      console.error("Submit error:", err);
+      Swal.fire({
+        title: "Something went wrong!",
+        icon: "error",
+      });
+    });
+};
+
 
   return (
     <div className="min-h-screen bg-[#f6f9f4] flex flex-col md:flex-row items-center justify-center p-6">
@@ -58,7 +108,9 @@ const ShareTip = () => {
 
       {/* Form */}
       <motion.div
-        className={`md:w-1/2 bg-white border border-[#dfe8dc] rounded-3xl shadow-xl p-8 md:p-12 w-full max-w-xl ${error ? "ring-2 ring-red-400" : ""}`}
+        className={`md:w-1/2 bg-white border border-[#dfe8dc] rounded-3xl shadow-xl p-8 md:p-12 w-full max-w-xl ${
+          error ? "ring-2 ring-red-400" : ""
+        }`}
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 15 }}
@@ -67,7 +119,10 @@ const ShareTip = () => {
           Share a Garden Tip 🌼
         </h2>
 
-        <form className="space-y-4 text-sm md:text-base" onSubmit={handleSubmit}>
+        <form
+          className="space-y-4 text-sm md:text-base"
+          onSubmit={handleSubmit}
+        >
           <motion.input
             whileFocus={{ scale: 1.02 }}
             type="text"
@@ -95,7 +150,9 @@ const ShareTip = () => {
             className="form-input"
             required
           >
-            <option value="" disabled>Difficulty Level</option>
+            <option value="" disabled>
+              Difficulty Level
+            </option>
             <option>Easy</option>
             <option>Medium</option>
             <option>Hard</option>
@@ -116,7 +173,9 @@ const ShareTip = () => {
             className="form-input"
             required
           >
-            <option value="" disabled>Category</option>
+            <option value="" disabled>
+              Category
+            </option>
             <option>Composting</option>
             <option>Plant Care</option>
             <option>Vertical Gardening</option>
@@ -129,7 +188,9 @@ const ShareTip = () => {
             className="form-input"
             required
           >
-            <option value="" disabled>Availability</option>
+            <option value="" disabled>
+              Availability
+            </option>
             <option>Public</option>
             <option>Hidden</option>
           </select>
