@@ -2,27 +2,27 @@ import { useLoaderData, useParams } from "react-router";
 import { Heart } from "lucide-react";
 import { useState } from "react";
 
-const dummyTip = {
-  id: "1",
-  title: "How I Grow Tomatoes Indoors",
-  category: "Indoor Gardening",
-  image: "https://img.freepik.com/free-photo/ripe-red-tomatoes-greenhouse_1150-11052.jpg",
-  plantType: "Tomato",
-  difficulty: "Medium",
-  description: `
-    Growing tomatoes indoors can be both fun and rewarding! You'll need plenty of sunlight, a deep pot, and organic compost. I use a south-facing window and water them every 2 days. Once they start growing, support them with bamboo sticks and keep rotating them for even sunlight.
-  `,
-  availability: "Public",
-  email: "greenthumb@example.com",
-  name: "Green Thumb Gardener"
-};
+// const dummyTip = {
+//   id: "1",
+//   title: "How I Grow Tomatoes Indoors",
+//   category: "Indoor Gardening",
+//   image: "https://img.freepik.com/free-photo/ripe-red-tomatoes-greenhouse_1150-11052.jpg",
+//   plantType: "Tomato",
+//   difficulty: "Medium",
+//   description: `
+//     Growing tomatoes indoors can be both fun and rewarding! You'll need plenty of sunlight, a deep pot, and organic compost. I use a south-facing window and water them every 2 days. Once they start growing, support them with bamboo sticks and keep rotating them for even sunlight.
+//   `,
+//   availability: "Public",
+//   email: "greenthumb@example.com",
+//   name: "Green Thumb Gardener"
+// };
 
 const TipDetails = () => {
 
   const tipDetails = useLoaderData();
-  console.log(tipDetails);
+  // console.log(tipDetails);
 
-  const { id } = useParams(); // Fetch by ID later from DB
+  // const { id } = useParams(); // Fetch by ID later from DB
   const [liked, setLiked] = useState(false);
 
   return (
@@ -58,7 +58,7 @@ const TipDetails = () => {
           <div className="grid md:grid-cols-2 gap-6 bg-[#f0f7ee] p-4 rounded-xl">
             <p><span className="font-semibold text-[#345c2c]">Category:</span> {tipDetails.category}</p>
             <p><span className="font-semibold text-[#345c2c]">Topic:</span> {tipDetails.topic}</p>
-            <p><span className="font-semibold text-[#345c2c]">Difficulty:</span> {dummyTip.difficulty}</p>
+            <p><span className="font-semibold text-[#345c2c]">Difficulty:</span> {tipDetails.difficulty}</p>
             <p><span className="font-semibold text-[#345c2c]">Availability:</span> {tipDetails.availability}</p>
             <p><span className="font-semibold text-[#345c2c]">Shared By:</span> {tipDetails.userName} ({tipDetails.userEmail})</p>
           </div>
