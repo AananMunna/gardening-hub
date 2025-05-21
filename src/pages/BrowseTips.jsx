@@ -1,5 +1,6 @@
 // import { Link } from "react-router";
 import { Eye } from "lucide-react";
+import { Link } from "react-router";
 
 const dummyTips = [
   {
@@ -60,12 +61,12 @@ const BrowseTips = () => {
                 </td>
                 <td className="py-3 px-6 text-[#446842]">{tip.category}</td>
                 <td className="py-3 px-6">
-                  <a to={`/tip/${tip.id}`}>
+                  <Link to={`/tip/${tip.id}`}>
                     <button className="flex items-center gap-1 bg-[#6b8e23] hover:bg-[#56751c] text-white px-4 py-2 rounded-md shadow-sm transition">
                       <Eye size={18} />
                       <span className="hidden sm:inline">See More</span>
                     </button>
-                  </a>
+                  </Link>
                 </td>
               </tr>
             ))}

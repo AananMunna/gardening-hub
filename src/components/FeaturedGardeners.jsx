@@ -1,6 +1,6 @@
-import { FaLeaf, FaSeedling, FaInstagram, FaTwitter, FaFacebookF } from 'react-icons/fa';
+import { FaLeaf, FaSeedling, FaInstagram, FaTwitter, FaFacebookF, FaStar, FaRegStar } from 'react-icons/fa';
 
-// Static data (will be replaced with dynamic data later)
+// Static data remains the same
 const gardeners = [
   {
     id: 1,
@@ -10,7 +10,8 @@ const gardeners = [
     status: "active",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
     tipsShared: 42,
-    rating: 4.9
+    rating: 4.9,
+    coverPhoto: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
   },
   {
     id: 2,
@@ -20,7 +21,8 @@ const gardeners = [
     status: "active",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
     tipsShared: 28,
-    rating: 4.7
+    rating: 4.7,
+    coverPhoto: "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
   },
   {
     id: 3,
@@ -30,7 +32,8 @@ const gardeners = [
     status: "active",
     image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
     tipsShared: 35,
-    rating: 4.8
+    rating: 4.8,
+    coverPhoto: "https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
   },
   {
     id: 4,
@@ -40,7 +43,8 @@ const gardeners = [
     status: "active",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
     tipsShared: 56,
-    rating: 5.0
+    rating: 5.0,
+    coverPhoto: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
   },
   {
     id: 5,
@@ -50,7 +54,8 @@ const gardeners = [
     status: "active",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80",
     tipsShared: 19,
-    rating: 4.5
+    rating: 4.5,
+    coverPhoto: "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
   },
   {
     id: 6,
@@ -60,15 +65,16 @@ const gardeners = [
     status: "active",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
     tipsShared: 31,
-    rating: 4.6
+    rating: 4.6,
+    coverPhoto: "https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
   }
 ];
 
 export default function FeaturedGardeners() {
   return (
-    <section className="py-16 bg-green-50">
+    <section className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
+        {/* Section Header remains the same */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center mb-4">
             <FaLeaf className="text-3xl text-green-600 mr-2" />
@@ -85,75 +91,92 @@ export default function FeaturedGardeners() {
         </div>
 
         {/* Gardeners Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {gardeners.map((gardener) => (
             <div 
               key={gardener.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2"
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
             >
-              {/* Gardener Image */}
-              <div className="relative h-64 overflow-hidden">
+              {/* Cover Photo */}
+              <div className="relative h-32 bg-green-600 overflow-hidden">
                 <img 
-                  src={gardener.image} 
-                  alt={gardener.name}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  src={gardener.coverPhoto} 
+                  alt={`${gardener.name}'s cover`}
+                  className="w-full h-full object-cover"
                 />
-                {/* Active Badge */}
-                <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center">
-                  <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
-                  Active
-                </div>
               </div>
-
-              {/* Gardener Info */}
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
+              
+              {/* Profile Picture with Active Badge */}
+              <div className="relative px-4">
+                <div className="absolute -top-12 left-4 border-4 border-white rounded-full overflow-hidden">
+                  <img 
+                    src={gardener.image} 
+                    alt={gardener.name}
+                    className="w-24 h-24 object-cover"
+                  />
+                </div>
+                  {/* Active Badge */}
+                  {gardener.status === "active" && (
+                    <div className="absolute -bottom-10 left-25 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                      <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    </div>
+                  )}
+              </div>
+              
+              {/* Profile Info */}
+              <div className="pt-16 px-4 pb-4">
+                <div className="text-center mb-3">
                   <h3 className="text-xl font-bold text-gray-800">{gardener.name}</h3>
-                  <div className="flex items-center bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium">
-                    <FaSeedling className="mr-1" />
-                    {gardener.rating}
+                  <p className="text-gray-600 text-sm">{gardener.expertise}</p>
+                </div>
+                
+                {/* Stats */}
+                <div className="border-t border-b border-gray-200 py-3 my-3">
+                  <div className="flex justify-around text-center">
+                    <div>
+                      <p className="font-bold text-gray-800">{gardener.tipsShared}</p>
+                      <p className="text-xs text-gray-500">Tips</p>
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-800">{gardener.experience}</p>
+                      <p className="text-xs text-gray-500">Experience</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center justify-center">
+                        {[...Array(5)].map((_, i) => (
+                          i < Math.floor(gardener.rating) ? 
+                            <FaStar key={i} className="text-yellow-400 text-sm" /> : 
+                            <FaRegStar key={i} className="text-yellow-400 text-sm" />
+                        ))}
+                      </div>
+                      <p className="text-xs text-gray-500">Rating</p>
+                    </div>
                   </div>
                 </div>
-
-                <div className="mb-4">
-                  <p className="text-gray-600 font-medium">{gardener.expertise}</p>
-                  <p className="text-gray-500 text-sm">Experience: {gardener.experience}</p>
-                </div>
-
-                <div className="flex justify-between items-center mb-4">
-                  <div className="bg-green-50 rounded-lg px-3 py-1">
-                    <p className="text-sm text-green-700 font-medium">
-                      <span className="font-bold">{gardener.tipsShared}</span> tips shared
-                    </p>
-                  </div>
-                  
-                  <div className="flex space-x-2">
-                    <a href="#" className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center hover:bg-green-200 transition-colors">
-                      <FaInstagram />
-                    </a>
-                    <a href="#" className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center hover:bg-green-200 transition-colors">
-                      <FaTwitter />
-                    </a>
-                    <a href="#" className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center hover:bg-green-200 transition-colors">
-                      <FaFacebookF />
-                    </a>
-                  </div>
-                </div>
-
-                <button className="w-full py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-lg hover:from-green-600 hover:to-green-700 transition-all shadow-md">
-                  View Profile
-                </button>
+                
+                {/* Social Links */}
+                {/* <div className="flex justify-center space-x-4 mt-4 pt-3 border-t border-gray-200">
+                  <a href="www.facebook.com" target='_blank' className="text-gray-500 hover:text-green-600 transition-colors">
+                    <FaInstagram className="text-lg" />
+                  </a>
+                  <a href="#" className="text-gray-500 hover:text-green-600 transition-colors">
+                    <FaTwitter className="text-lg" />
+                  </a>
+                  <a href="#" className="text-gray-500 hover:text-green-600 transition-colors">
+                    <FaFacebookF className="text-lg" />
+                  </a>
+                </div> */}
               </div>
             </div>
           ))}
         </div>
 
         {/* View All Button */}
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <button className="px-6 py-3 border-2 border-green-600 text-green-600 font-medium rounded-lg hover:bg-green-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md">
             View All Gardeners
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
