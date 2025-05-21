@@ -86,11 +86,11 @@ export default function SeasonalGuide() {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        {/* <div className="mt-12 text-center">
           <button className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
             Download Full Planting Calendar
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { FaHeart, FaComment, FaShare, FaTrophy } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const communityPosts = [
   {
@@ -102,9 +103,9 @@ export default function CommunitySpotlight() {
         </div>
 
         <div className="mt-12 text-center">
-          <button className="px-6 py-3 border-2 border-green-600 text-green-600 font-medium rounded-lg hover:bg-green-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md">
+          <Link to='/ShareTip' className="px-6 py-3 border-2 border-green-600 text-green-600 font-medium rounded-lg hover:bg-green-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md">
             Join the Community Conversation
-          </button>
+          </Link>
         </div>
       </div>
     </section>

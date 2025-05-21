@@ -44,6 +44,15 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "tipDetails/:id",
+        loader: ({params}) => fetch(`http://localhost:3000/tips/${params.id}`) ,
+        element: (
+          <PrivateRoute>
+            <TipDetails></TipDetails>
+          </PrivateRoute>
+        ),
+      },
       { path: "login", Component: Login },
       { path: "register", Component: Register },
       // { path: "tip/:id", Component: TipDetails },

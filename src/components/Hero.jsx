@@ -4,16 +4,17 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import Swal from 'sweetalert2';
 
 // High-quality gardening event images
 const slideData = [
   {
     image: 'https://images.unsplash.com/photo-1599598177991-ec67b5c37318?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
-    title: "Blooming Festival 2023",
+    title: "Blooming Festival 2025",
     subtitle: "Celebrate Spring in Full Color",
     description: "Join our 3-day extravaganza with flower arranging competitions, garden tours, and expert workshops.",
     buttonText: "Get Tickets",
-    date: "May 20-22, 2023",
+    date: "May 20-22, 2025",
     badge: "New Event"
   },
   {
@@ -22,7 +23,7 @@ const slideData = [
     subtitle: "Small Space, Big Harvest",
     description: "Learn vertical gardening techniques and balcony farming from urban agriculture specialists.",
     buttonText: "Register Now",
-    date: "June 10, 2023",
+    date: "June 10, 2025",
     badge: "Popular"
   },
   {
@@ -31,12 +32,41 @@ const slideData = [
     subtitle: "Turn Waste to Garden Gold",
     description: "Hands-on training for creating nutrient-rich compost for your organic garden.",
     buttonText: "Join Workshop",
-    date: "July 5, 2023",
+    date: "July 5, 2025",
     badge: "Limited Seats"
   }
 ];
 
 export default function Hero() {
+  const handleClick = () => {
+    Swal.fire({
+  title: "Enter your phone number",
+  input: "tel",
+  inputAttributes: {
+    placeholder: "e.g., 017XXXXXXXX",
+    autocapitalize: "off"
+  },
+  showCancelButton: true,
+  confirmButtonText: "Submit",
+  showLoaderOnConfirm: true,
+  preConfirm: async (phone) => {
+    if (!phone || !/^\d{10,15}$/.test(phone)) {
+      Swal.showValidationMessage("Please enter a valid phone number");
+    }
+    return phone;
+  },
+  allowOutsideClick: () => !Swal.isLoading()
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+      icon: "success",
+      title: "Thank you!",
+      text: "Our team will contact with you"
+    });
+  }
+});
+
+  }
   return (
     <section className="relative overflow-hidden rounded-b-3xl shadow-2xl">
       <Swiper
@@ -103,7 +133,7 @@ export default function Hero() {
                       {slide.description}
                     </p>
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                      <button className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                      <button onClick={handleClick}  className="px-8 py-4 cursor-pointer bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         {slide.buttonText}
                       </button>
                       <div className="flex items-center gap-2">
