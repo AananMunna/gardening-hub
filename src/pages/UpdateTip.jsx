@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
 
 const dummyTip = {
   title: "How I Grow Tomatoes Indoors",
@@ -13,13 +15,34 @@ const dummyTip = {
 };
 
 const UpdateTip = () => {
-  const [tip, setTip] = useState(dummyTip);
+  const tipData = useLoaderData();
+  // console.log(tipData._id);
+  const [tip, setTip] = useState(tipData);
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSuccess(true);
     // Backend update logic here
+    fetch(`http://localhost:3000/tips/${tipData._id}`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(tip)
+})
+  .then(res => res.json())
+  .then(data => {
+    if(data.modifiedCount){
+      Swal.fire({
+  title: "Updated Successfully!",
+  icon: "success",
+  draggable: true
+});
+    }
+  })
+  .catch(err => console.error("Update failed:", err));
+
   };
 
   return (
@@ -44,8 +67,8 @@ const UpdateTip = () => {
             <label className="text-sm text-gray-600">Plant Type/Topic</label>
             <input
               type="text"
-              value={tip.plantType}
-              onChange={(e) => setTip({ ...tip, plantType: e.target.value })}
+              value={tip.topic}
+              onChange={(e) => setTip({ ...tip, topic: e.target.value })}
               className="w-full mt-1 p-3 border rounded-lg"
             />
           </div>
@@ -118,7 +141,7 @@ const UpdateTip = () => {
                 type="text"
                 value={tip.userName}
                 readOnly
-                className="w-full mt-1 p-3 border bg-gray-100 text-gray-500 rounded-lg"
+                className="w-full cursor-not-allowed mt-1 p-3 border bg-gray-100 text-gray-500 rounded-lg"
               />
             </div>
             <div>
@@ -127,14 +150,14 @@ const UpdateTip = () => {
                 type="email"
                 value={tip.userEmail}
                 readOnly
-                className="w-full mt-1 p-3 border bg-gray-100 text-gray-500 rounded-lg"
+                className="w-full cursor-not-allowed mt-1 p-3 border bg-gray-100 text-gray-500 rounded-lg"
               />
             </div>
           </div>
 
           <button
             type="submit"
-            className="mt-6 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
+            className="mt-6 cursor-pointer bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
           >
             ✅ Update Tip
           </button>

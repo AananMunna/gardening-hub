@@ -42,16 +42,18 @@ const MyTips = () => {
           method: "DELETE",
         })
           .then((res) => res.json())
-          .then((data) => console.log(data));
+          .then((data) => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
 
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-
-        const remaining = tips.filter(tip => tip._id != id)
-        setTips(remaining);
+              const remaining = tips.filter((tip) => tip._id != id);
+              setTips(remaining);
+            }
+          });
       }
     });
   };

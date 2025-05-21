@@ -9,6 +9,7 @@ import Login from "./../pages/Login";
 import Register from "./../pages/Register";
 import TipDetails from "./../pages/TipDetails";
 import PrivateRoute from "../components/PrivateRoute";
+import UpdateTip from "../pages/UpdateTip";
 
 export const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ export const router = createBrowserRouter([
         loader: ({params}) => fetch(`http://localhost:3000/tips/${params.id}`) ,
         element: (
           <PrivateRoute>
-            <TipDetails></TipDetails>
+            <UpdateTip></UpdateTip>
           </PrivateRoute>
         ),
       },
