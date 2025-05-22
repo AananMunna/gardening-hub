@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const gardeners = [
   {
@@ -8,7 +9,8 @@ const gardeners = [
     gender: "Female",
     status: "Active",
     experience: "10 years",
-    image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=400&q=80",
+    image:
+      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=400&q=80",
     totalTips: 42,
     bio: "Specializes in urban gardening and sustainable practices.",
   },
@@ -19,7 +21,8 @@ const gardeners = [
     gender: "Male",
     status: "Active",
     experience: "15 years",
-    image: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=400&q=80",
+    image:
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=400&q=80",
     totalTips: 58,
     bio: "Passionate about vertical gardening and hydroponics.",
   },
@@ -30,7 +33,8 @@ const gardeners = [
     gender: "Female",
     status: "Inactive",
     experience: "5 years",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80",
+    image:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80",
     totalTips: 20,
     bio: "Expert in composting and organic fertilizers.",
   },
@@ -41,7 +45,8 @@ const gardeners = [
     gender: "Male",
     status: "Active",
     experience: "12 years",
-    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=400&q=80",
+    image:
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=400&q=80",
     totalTips: 35,
     bio: "Focused on landscape gardening and native plants.",
   },
@@ -52,7 +57,8 @@ const gardeners = [
     gender: "Female",
     status: "Active",
     experience: "20 years",
-    image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80",
+    image:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80",
     totalTips: 70,
     bio: "Gardening coach specializing in greenhouse setups.",
   },
@@ -63,7 +69,8 @@ const gardeners = [
     gender: "Male",
     status: "Inactive",
     experience: "8 years",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80",
+    image:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80",
     totalTips: 28,
     bio: "Enthusiast of permaculture and soil health.",
   },
@@ -80,7 +87,7 @@ const ExploreGardeners = () => {
         {gardeners.map((gardener) => (
           <div
             key={gardener.id}
-            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer overflow-hidden"
+            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform duration-300 ease-in-out overflow-hidden"
           >
             <div className="relative h-56 w-full">
               <img
@@ -100,28 +107,60 @@ const ExploreGardeners = () => {
             </div>
 
             <div className="p-6">
-              <h2 className="text-2xl font-bold text-green-900 mb-1">{gardener.name}</h2>
-              <p className="text-green-700 font-semibold mb-2">{gardener.bio}</p>
+              <h2 className="text-2xl font-bold text-green-900 mb-1">
+                {gardener.name}
+              </h2>
+              <p className="text-green-700 font-semibold mb-2">
+                {gardener.bio}
+              </p>
 
               <div className="flex flex-wrap gap-4 text-sm text-green-800 mb-4">
                 <div>
                   <span className="font-semibold">Age:</span> {gardener.age}
                 </div>
                 <div>
-                  <span className="font-semibold">Gender:</span> {gardener.gender}
+                  <span className="font-semibold">Gender:</span>{" "}
+                  {gardener.gender}
                 </div>
                 <div>
-                  <span className="font-semibold">Experience:</span> {gardener.experience}
+                  <span className="font-semibold">Experience:</span>{" "}
+                  {gardener.experience}
                 </div>
                 <div>
-                  <span className="font-semibold">Shared Tips:</span> {gardener.totalTips}
+                  <span className="font-semibold">Shared Tips:</span>{" "}
+                  {gardener.totalTips}
                 </div>
               </div>
 
               <button
                 type="button"
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg shadow-md transition duration-300"
-                onClick={() => alert(`Viewing profile of ${gardener.name}`)}
+                className="w-full cursor-pointer bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg shadow-md transition duration-300"
+                onClick={() =>
+                  Swal.fire({
+  title: "Private Profile",
+  text: "This user has set their profile to private. You can't view it at the moment.",
+  icon: "info",
+  confirmButtonText: "Okay",
+  confirmButtonColor: "#3085d6",
+  background: "#f7f9fc",
+  timer: 4000,
+  timerProgressBar: true,
+  showClass: {
+    popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `,
+  },
+  hideClass: {
+    popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `,
+  }
+})
+                }
               >
                 View Profile
               </button>
