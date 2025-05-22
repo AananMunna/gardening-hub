@@ -7,189 +7,157 @@ import ProfileDropdown from "./ProfileDropdown";
 import { ThemeContext } from "../context/ThemeContext";
 
 export default function Navbar() {
-
   const { darkMode, setDarkMode } = useContext(ThemeContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const {user,logout} = use(AuthContext);
+  const { user, logout } = use(AuthContext);
   // console.log(user);
 
   const handleLogout = () => {
-  logout()
-    .then(() => {
-      // console.log("User signed out successfully.");
-      Swal.fire({
-  title: "Signed out successfully.",
-  icon: "success",
-  draggable: true
-});
-      // Optional: redirect to login or homepage
-      navigate("/");
-    })
-    .catch((error) => {
-      // console.error("Logout error:", error.message);
-      Swal.fire({
-  icon: "error",
-  title: "Oops...",
-  text: "Something went wrong!",
-  footer: error.message
-});
-    });
-};
+    logout()
+      .then(() => {
+        // console.log("User signed out successfully.");
+        Swal.fire({
+          title: "Signed out successfully.",
+          icon: "success",
+          draggable: true,
+        });
+        // Optional: redirect to login or homepage
+        navigate("/");
+      })
+      .catch((error) => {
+        // console.error("Logout error:", error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: error.message,
+        });
+      });
+  };
 
   return (
-    <nav className="bg-gradient-to-r from-green-700 to-green-600 text-white shadow-lg">
-      <div className="container mx-auto px-4">
-        {/* Main Navbar */}
-        <div className="flex justify-between items-center h-20">
-          {/* Logo with more spacing */}
-          <div className="flex items-center space-x-3">
-            <FaLeaf className="text-3xl text-emerald-300" />
-            <span className="text-2xl font-bold font-serif tracking-wider">
-              GardenHub
-            </span>
+    <nav className="bg-gradient-to-r from-green-700 to-green-600 dark:from-gray-900 dark:to-gray-800 text-white shadow-lg">
+  <div className="container mx-auto px-4">
+    {/* Main Navbar */}
+    <div className="flex justify-between items-center h-20">
+      {/* Logo */}
+      <div className="flex items-center space-x-3">
+        <FaLeaf className="text-3xl text-emerald-300 dark:text-lime-400" />
+        <span className="text-2xl font-bold font-serif tracking-wider text-white dark:text-lime-100">
+          GardenHub
+        </span>
+      </div>
+
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex items-center space-x-1">
+        {[
+          { to: "/", label: "Home" },
+          { to: "/ExploreGardeners", label: "Explore Gardeners" },
+          { to: "/BrowseTips", label: "Browse Tips" },
+          { to: "/ShareTip", label: "Share a Tip" },
+          { to: "/MyTips", label: "My Tips" },
+        ].map((item) => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 dark:hover:bg-gray-700 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2"
+          >
+            <span className="text-white dark:text-gray-100">{item.label}</span>
+          </NavLink>
+        ))}
+      </div>
+
+      {/* Right Side Controls */}
+      <div className="flex items-center space-x-2">
+        {/* Theme Toggle */}
+        <button
+          onClick={() => setDarkMode((prev) => !prev)}
+          className="p-3 rounded-full cursor-pointer bg-green-800 bg-opacity-30 dark:bg-gray-700 dark:bg-opacity-40 hover:bg-opacity-50 transition-all hover:rotate-12"
+          title="Toggle Theme"
+        >
+          {darkMode ? <FaSun className="text-yellow-300" /> : <FaLeaf className="text-lime-400" />}
+        </button>
+
+        {/* Profile Dropdown */}
+        <ProfileDropdown user={user} handleLogout={logout} />
+
+        {!user && (
+          <div className="space-x-2 hidden md:flex">
+            <NavLink
+              to="/login"
+              className="px-6 py-3 bg-green-700 dark:bg-gray-700 hover:bg-green-800 dark:hover:bg-gray-600 text-white font-semibold rounded-full shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1"
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to="/register"
+              className="px-6 py-3 border-2 border-green-700 dark:border-gray-600 text-white font-semibold rounded-full shadow-md transition duration-300 ease-in-out transform hover:bg-green-700 dark:hover:bg-gray-600 hover:-translate-y-1"
+            >
+              Register
+            </NavLink>
           </div>
+        )}
 
-          {/* Desktop Navigation with beautiful navlinks */}
-          <div className="hidden md:flex items-center space-x-1">
-            <NavLink
-              to="/"
-              className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2"
-            >
-              <span>Home</span>
-            </NavLink>
-            <NavLink
-              to="/ExploreGardeners"
-              className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2"
-            >
-              <span>Explore Gardeners</span>
-            </NavLink>
-            <NavLink
-              to="/BrowseTips"
-              className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2"
-            >
-              <span>Browse Tips</span>
-            </NavLink>
-            <NavLink
-              to="/ShareTip"
-              className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2"
-            >
-              <span>Share a Tip</span>
-            </NavLink>
-            <NavLink
-              to="/MyTips"
-              className="nav-link px-4 py-2 rounded-lg hover:bg-green-800 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2"
-            >
-              <span>My Tips</span>
-            </NavLink>
-          </div>
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-3 rounded-md hover:bg-green-700 dark:hover:bg-gray-700 focus:outline-none transition-all"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? (
+            <FaTimes className="text-2xl" />
+          ) : (
+            <FaBars className="text-2xl" />
+          )}
+        </button>
+      </div>
+    </div>
 
-          {/* Right Side Controls with more spacing */}
-          <div className="flex items-center space-x-2">
-            {/* Theme Toggle */}
-            <button onClick={() => setDarkMode((prev) => !prev)} className="p-3 rounded-full cursor-pointer bg-green-800 bg-opacity-30 hover:bg-opacity-50 transition-all hover:rotate-12">
-              {/* <FaSun className="text-yellow-300 text-xl" /> */}
-              {darkMode ? "☀" : "🌙"}
-            </button>
+    {/* Mobile Menu */}
+    {isMenuOpen && (
+      <div className="md:hidden pb-4 space-y-3 mt-2">
+        {[
+          { to: "/", label: "Home" },
+          { to: "/ExploreGardeners", label: "Explore Gardeners" },
+          { to: "/BrowseTips", label: "Browse Tips" },
+          { to: "/ShareTip", label: "Share a Tip" },
+          { to: "/MyTips", label: "My Tips" },
+        ].map((item) => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            onClick={() => setIsMenuOpen(false)}
+            className="block px-5 py-3 rounded-lg text-lg font-medium hover:bg-green-700 dark:hover:bg-gray-700 transition-all mx-2 text-white"
+          >
+            {item.label}
+          </NavLink>
+        ))}
 
-            {/* User Profile Placeholder */}
-<ProfileDropdown user={user} handleLogout={logout} />
-
-            {!user && <div className=" space-x-2 hidden md:flex">
-              {/* Login Button */}
-              <NavLink to='/login'
-                className="px-6 py-3 cursor-pointer bg-green-700 hover:bg-green-800 text-white font-semibold rounded-full shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1"
-                type="button"
-              >
-                Login
-              </NavLink>
-
-              {/* Register Button */}
-              <NavLink to='register'
-                className="px-6 py-3 cursor-pointer border-2 border-green-700 text-white font-semibold rounded-full shadow-md transition duration-300 ease-in-out transform hover:bg-green-700 hover:text-white hover:-translate-y-1"
-                type="button"
-              >
-                Register
-              </NavLink>
-            </div>}
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-3 rounded-md hover:bg-green-700 focus:outline-none transition-all"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? (
-                <FaTimes className="text-2xl" />
-              ) : (
-                <FaBars className="text-2xl" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu with beautiful spacing */}
-        {isMenuOpen && (
-          <div className="md:hidden pb-4 space-y-3 mt-2">
+        {!user && (
+          <div className="flex space-x-2 px-2">
             <NavLink
-              to="/"
-              className="block px-5 py-3 rounded-lg text-lg font-medium hover:bg-green-700 transition-all mx-2"
-              onClick={() => setIsMenuOpen(false)}
+              to="/login"
+              className="px-6 py-3 bg-green-700 dark:bg-gray-700 hover:bg-green-800 dark:hover:bg-gray-600 text-white font-semibold rounded-full shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1"
             >
-              Home
+              Login
             </NavLink>
             <NavLink
-              to="/ExploreGardeners"
-              className="block px-5 py-3 rounded-lg text-lg font-medium hover:bg-green-700 transition-all mx-2"
-              onClick={() => setIsMenuOpen(false)}
+              to="/register"
+              className="px-6 py-3 border-2 border-green-700 dark:border-gray-600 text-white font-semibold rounded-full shadow-md transition duration-300 ease-in-out transform hover:bg-green-700 dark:hover:bg-gray-600 hover:-translate-y-1"
             >
-              Explore Gardeners
+              Register
             </NavLink>
-            <NavLink
-              to="/BrowseTips"
-              className="block px-5 py-3 rounded-lg text-lg font-medium hover:bg-green-700 transition-all mx-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Browse Tips
-            </NavLink>
-            <NavLink
-              to="/ShareTip"
-              className="block px-5 py-3 rounded-lg text-lg font-medium hover:bg-green-700 transition-all mx-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Share a Tip
-            </NavLink>
-            <NavLink
-              to="/MyTips"
-              className="block px-5 py-3 rounded-lg text-lg font-medium hover:bg-green-700 transition-all mx-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              My Tips
-            </NavLink>
-                        {!user && <div className=" space-x-2 flex">
-              {/* Login Button */}
-              <NavLink to='/login'
-                className="px-6 py-3 cursor-pointer bg-green-700 hover:bg-green-800 text-white font-semibold rounded-full shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1"
-                type="button"
-              >
-                Login
-              </NavLink>
-
-              {/* Register Button */}
-              <NavLink to='register'
-                className="px-6 py-3 text-white cursor-pointer border-2 border-green-700  font-semibold rounded-full shadow-xl transition duration-300 ease-in-out transform hover:bg-green-700 hover:text-white hover:-translate-y-1"
-                type="button"
-              >
-                Register
-              </NavLink>
-            </div>}
           </div>
         )}
       </div>
-    </nav>
+    )}
+  </div>
+</nav>
+
   );
 }

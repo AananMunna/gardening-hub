@@ -68,7 +68,7 @@ const TopTrendingTips = () => {
     if (loading) {
       return <LoadingSpinner />;
     }
-console.log(tips)
+// console.log(tips)
   return (
     <section className="py-16 bg-[#f0f9f2] text-[#2f4f2f]">
       <div className="max-w-7xl mx-auto px-4">
