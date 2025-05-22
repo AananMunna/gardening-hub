@@ -53,7 +53,7 @@ const TopTrendingTips = () => {
   const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-      fetch("http://localhost:3000/trending")
+      fetch("https://gardening-hub-server.vercel.app/trending")
         .then((res) => res.json())
         .then((data) => {
           setTips(data);

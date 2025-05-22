@@ -7,7 +7,7 @@ export default function FeaturedGardeners() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/gardeners/active")
+    fetch("https://gardening-hub-server.vercel.app/gardeners/active")
       .then((res) => res.json())
       .then((data) => {
         setGardeners(data);

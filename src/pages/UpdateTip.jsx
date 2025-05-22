@@ -24,7 +24,7 @@ const UpdateTip = () => {
     e.preventDefault();
     setSuccess(true);
     // Backend update logic here
-    fetch(`http://localhost:3000/tips/${tipData._id}`, {
+    fetch(`https://gardening-hub-server.vercel.app/tips/${tipData._id}`, {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json'

@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
       {
         path: "tip/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/tips/${params.id}`),
+          fetch(`https://gardening-hub-server.vercel.app/tips/${params.id}`),
         element: (
           <PrivateRoute>
             <UpdateTip></UpdateTip>
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
       {
         path: "tipDetails/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/tips/${params.id}`),
+          fetch(`https://gardening-hub-server.vercel.app/tips/${params.id}`),
         element: (
           <PrivateRoute>
             <TipDetails></TipDetails>

@@ -38,7 +38,7 @@ const MyTips = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/tips/${id}`, {
+        fetch(`https://gardening-hub-server.vercel.app/tips/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -59,7 +59,7 @@ const MyTips = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/tips")
+    fetch("https://gardening-hub-server.vercel.app/tips")
       .then((res) => res.json())
       .then((data) => {
         setTips(data);

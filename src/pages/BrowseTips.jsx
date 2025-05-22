@@ -9,7 +9,7 @@ const BrowseTips = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
 
   useEffect(() => {
-    fetch("http://localhost:3000/tips")
+    fetch("https://gardening-hub-server.vercel.app/tips")
       .then((res) => res.json())
       .then((data) => {
         const visibleTips = data.filter((tip) => tip.availability !== "Hidden");
