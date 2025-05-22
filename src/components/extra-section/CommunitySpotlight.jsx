@@ -39,75 +39,85 @@ const communityPosts = [
 
 export default function CommunitySpotlight() {
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Community Spotlight
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            See what's growing in our community this week
-          </p>
-        </div>
+    <section className="py-16 bg-white dark:bg-gray-900">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-12">
+      <h2 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+        Community Spotlight
+      </h2>
+      <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        See what's growing in our community this week
+      </p>
+    </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {communityPosts.map((post) => (
-            <div 
-              key={post.id}
-              className={`bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 ${post.isTopPost ? "lg:col-span-2 border-2 border-yellow-300" : "border border-gray-100"}`}
-            >
-              {post.isTopPost && (
-                <div className="bg-yellow-100 text-yellow-800 px-4 py-2 flex items-center">
-                  <FaTrophy className="mr-2" />
-                  <span className="font-semibold">Top Post This Week</span>
-                </div>
-              )}
-              
-              <div className="p-6">
-                <div className="flex items-center mb-4">
-                  <img 
-                    src={post.avatar} 
-                    alt={post.user}
-                    className="w-12 h-12 rounded-full object-cover mr-3 border-2 border-green-200"
-                  />
-                  <span className="font-bold text-gray-800">{post.user}</span>
-                </div>
-                
-                <p className="text-gray-700 mb-4">{post.content}</p>
-                
-                <div className="mb-4 rounded-lg overflow-hidden shadow-sm">
-                  <img 
-                    src={post.image} 
-                    alt="Community post"
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                
-                <div className="flex justify-between text-gray-500">
-                  <div className="flex items-center">
-                    <FaHeart className="text-red-500 mr-1" />
-                    <span>{post.likes}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaComment className="text-blue-500 mr-1" />
-                    <span>{post.comments}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FaShare className="text-green-500 mr-1" />
-                    <span>{post.shares}</span>
-                  </div>
-                </div>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {communityPosts.map((post) => (
+        <div
+          key={post.id}
+          className={`bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-lg overflow-hidden hover:shadow-xl dark:hover:shadow-green-700 transition-shadow duration-300 ${
+            post.isTopPost
+              ? "lg:col-span-2 border-2 border-yellow-300 dark:border-yellow-500"
+              : "border border-gray-100 dark:border-gray-700"
+          }`}
+        >
+          {post.isTopPost && (
+            <div className="bg-yellow-100 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-300 px-4 py-2 flex items-center">
+              <FaTrophy className="mr-2" />
+              <span className="font-semibold">Top Post This Week</span>
+            </div>
+          )}
+
+          <div className="p-6">
+            <div className="flex items-center mb-4">
+              <img
+                src={post.avatar}
+                alt={post.user}
+                className="w-12 h-12 rounded-full object-cover mr-3 border-2 border-green-200 dark:border-green-600"
+              />
+              <span className="font-bold text-gray-800 dark:text-gray-100">
+                {post.user}
+              </span>
+            </div>
+
+            <p className="text-gray-700 dark:text-gray-300 mb-4">{post.content}</p>
+
+            <div className="mb-4 rounded-lg overflow-hidden shadow-sm dark:shadow-none">
+              <img
+                src={post.image}
+                alt="Community post"
+                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            <div className="flex justify-between text-gray-500 dark:text-gray-400">
+              <div className="flex items-center">
+                <FaHeart className="text-red-500 mr-1" />
+                <span>{post.likes}</span>
+              </div>
+              <div className="flex items-center">
+                <FaComment className="text-blue-500 mr-1" />
+                <span>{post.comments}</span>
+              </div>
+              <div className="flex items-center">
+                <FaShare className="text-green-500 mr-1" />
+                <span>{post.shares}</span>
               </div>
             </div>
-          ))}
+          </div>
         </div>
+      ))}
+    </div>
 
-        <div className="mt-12 text-center">
-          <Link to='/ShareTip' className="px-6 py-3 border-2 border-green-600 text-green-600 font-medium rounded-lg hover:bg-green-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md">
-            Join the Community Conversation
-          </Link>
-        </div>
-      </div>
-    </section>
+    <div className="mt-12 text-center">
+      <Link
+        to="/ShareTip"
+        className="px-6 py-3 border-2 border-green-600 text-green-600 font-medium rounded-lg hover:bg-green-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-gray-900"
+      >
+        Join the Community Conversation
+      </Link>
+    </div>
+  </div>
+</section>
+
   );
 }
