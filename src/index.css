@@ -1,8 +1,10 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 @import 'swiper/css';
 @import 'swiper/css/pagination';
 @import 'swiper/css/navigation';
 @import 'animate.css';
+
 
 /* In your global CSS or inside tailwind.config.js safelist */
 .form-input {

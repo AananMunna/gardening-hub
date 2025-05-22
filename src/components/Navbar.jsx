@@ -1,11 +1,15 @@
-import { use, useState } from "react";
+import { use, useContext, useState } from "react";
 import { FaLeaf, FaSun, FaUser, FaTimes, FaBars } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthProvider";
 import Swal from "sweetalert2";
 import ProfileDropdown from "./ProfileDropdown";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function Navbar() {
+
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -87,8 +91,9 @@ export default function Navbar() {
           {/* Right Side Controls with more spacing */}
           <div className="flex items-center space-x-2">
             {/* Theme Toggle */}
-            <button className="p-3 rounded-full cursor-pointer bg-green-800 bg-opacity-30 hover:bg-opacity-50 transition-all hover:rotate-12">
-              <FaSun className="text-yellow-300 text-xl" />
+            <button onClick={() => setDarkMode((prev) => !prev)} className="p-3 rounded-full cursor-pointer bg-green-800 bg-opacity-30 hover:bg-opacity-50 transition-all hover:rotate-12">
+              {/* <FaSun className="text-yellow-300 text-xl" /> */}
+              {darkMode ? "☀" : "🌙"}
             </button>
 
             {/* User Profile Placeholder */}

@@ -12,9 +12,7 @@ const BrowseTips = () => {
     fetch("http://localhost:3000/tips")
       .then((res) => res.json())
       .then((data) => {
-        const visibleTips = data.filter(
-          (tip) => tip.availability !== "Hidden"
-        );
+        const visibleTips = data.filter((tip) => tip.availability !== "Hidden");
         setTips(visibleTips);
         setLoading(false);
       })

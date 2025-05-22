@@ -78,7 +78,7 @@ const gardeners = [
 
 const ExploreGardeners = () => {
   return (
-    <div className="bg-green-50 min-h-screen py-12 px-6 md:px-16 lg:px-24">
+    <div className="bg-green-50 dark:bg-gray-900 min-h-screen py-12 px-6 md:px-16 lg:px-24">
       <h1 className="text-4xl font-extrabold text-green-900 mb-10 text-center drop-shadow-lg">
         🌿 Explore Gardeners
       </h1>
