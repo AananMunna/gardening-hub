@@ -3,45 +3,23 @@ import { Eye } from "lucide-react";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-const dummyTips = [
-  {
-    id: 1,
-    title: "How I Grow Tomatoes Indoors",
-    category: "Indoor Gardening",
-    image:
-      "https://img.freepik.com/free-photo/ripe-red-tomatoes-greenhouse_1150-11052.jpg",
-  },
-  {
-    id: 2,
-    title: "Composting Made Easy",
-    category: "Composting",
-    image:
-      "https://img.freepik.com/free-photo/compost-bin-full-organic-waste_53876-123674.jpg",
-  },
-  {
-    id: 3,
-    title: "Vertical Garden on a Balcony",
-    category: "Vertical Gardening",
-    image:
-      "https://img.freepik.com/free-photo/vertical-garden-balcony-urban_53876-133337.jpg",
-  },
-];
-
 const BrowseTips = () => {
-  const [tips, setTips] = useState(null);
+  const [tips, setTips] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedDifficulty, setSelectedDifficulty] = useState("All");
 
   useEffect(() => {
     fetch("http://localhost:3000/tips")
       .then((res) => res.json())
       .then((data) => {
-        const remainingTip = data.filter(tip => tip.availability !== 'Hidden');
-        console.log(remainingTip);
-        setTips(remainingTip);
+        const visibleTips = data.filter(
+          (tip) => tip.availability !== "Hidden"
+        );
+        setTips(visibleTips);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching gardeners:", err);
+        console.error("Error fetching tips:", err);
         setLoading(false);
       });
   }, []);
@@ -50,14 +28,31 @@ const BrowseTips = () => {
     return <LoadingSpinner />;
   }
 
-  // const remainingTip = allTips.filter(tip => tip.availability !== 'hidden');
-  // setTips(remainingTip)
+  // Filter tips based on selected difficulty
+  const filteredTips =
+    selectedDifficulty === "All"
+      ? tips
+      : tips.filter((tip) => tip.difficulty === selectedDifficulty);
 
   return (
     <div className="min-h-screen bg-[#f4f7f3] px-4 py-10 md:px-10">
-      <h2 className="text-3xl md:text-4xl font-bold text-[#345c2c] mb-8 text-center">
+      <h2 className="text-3xl md:text-4xl font-bold text-[#345c2c] mb-6 text-center">
         🌿 Browse Public Gardening Tips
       </h2>
+
+      {/* Difficulty Filter */}
+      <div className="mb-6 flex justify-center">
+        <select
+          className="px-4 py-2 border border-green-300 rounded-md shadow-sm text-green-900"
+          value={selectedDifficulty}
+          onChange={(e) => setSelectedDifficulty(e.target.value)}
+        >
+          <option value="All">All Difficulty Levels</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+      </div>
 
       <div className="overflow-x-auto">
         <table className="min-w-full border border-green-200 bg-white shadow-md rounded-xl overflow-hidden">
@@ -66,14 +61,15 @@ const BrowseTips = () => {
               <th className="py-4 px-6 text-left">Image</th>
               <th className="py-4 px-6 text-left">Title</th>
               <th className="py-4 px-6 text-left">Category</th>
+              <th className="py-4 px-6 text-left">Difficulty</th>
               <th className="py-4 px-6 text-left">Status</th>
               <th className="py-4 px-6 text-left">Action</th>
             </tr>
           </thead>
           <tbody>
-            {tips.map((tip) => (
+            {filteredTips.map((tip) => (
               <tr
-                key={tip.id}
+                key={tip._id}
                 className="border-t border-green-100 hover:bg-[#f0f7ee] transition duration-200"
               >
                 <td className="py-3 px-6">
@@ -87,6 +83,9 @@ const BrowseTips = () => {
                   {tip.title}
                 </td>
                 <td className="py-3 px-6 text-[#446842]">{tip.category}</td>
+                <td className="py-3 px-6 text-[#446842]">
+                  {tip.difficulty || "N/A"}
+                </td>
                 <td className="py-3 px-6 text-[#446842]">{tip.availability}</td>
                 <td className="py-3 px-6">
                   <Link to={`/tipDetails/${tip._id}`}>

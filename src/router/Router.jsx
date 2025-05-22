@@ -10,6 +10,7 @@ import Register from "./../pages/Register";
 import TipDetails from "./../pages/TipDetails";
 import PrivateRoute from "../components/PrivateRoute";
 import UpdateTip from "../pages/UpdateTip";
+import NotFound from "./../pages/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "tip/:id",
-        loader: ({params}) => fetch(`http://localhost:3000/tips/${params.id}`) ,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/tips/${params.id}`),
         element: (
           <PrivateRoute>
             <UpdateTip></UpdateTip>
@@ -46,7 +48,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "tipDetails/:id",
-        loader: ({params}) => fetch(`http://localhost:3000/tips/${params.id}`) ,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/tips/${params.id}`),
         element: (
           <PrivateRoute>
             <TipDetails></TipDetails>
@@ -55,7 +58,8 @@ export const router = createBrowserRouter([
       },
       { path: "login", Component: Login },
       { path: "register", Component: Register },
-      // { path: "tip/:id", Component: TipDetails },
+      { path: "*", Component: NotFound },
     ],
   },
+  { path: "*", Component: NotFound },
 ]);
