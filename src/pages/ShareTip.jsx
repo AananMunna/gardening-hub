@@ -44,6 +44,7 @@ const ShareTip = () => {
     ...formData,
     userName,
     userEmail,
+    totalLike:0
   };
 
   fetch("https://gardening-hub-server.vercel.app/tips", {

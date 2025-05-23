@@ -17,28 +17,7 @@ export default function Navbar() {
   const { user, logout } = use(AuthContext);
   // console.log(user);
 
-  const handleLogout = () => {
-    logout()
-      .then(() => {
-        // console.log("User signed out successfully.");
-        Swal.fire({
-          title: "Signed out successfully.",
-          icon: "success",
-          draggable: true,
-        });
-        // Optional: redirect to login or homepage
-        navigate("/");
-      })
-      .catch((error) => {
-        // console.error("Logout error:", error.message);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-          footer: error.message,
-        });
-      });
-  };
+
 
   return (
     <nav className="bg-gradient-to-r from-green-700 to-green-600 dark:from-gray-900 dark:to-gray-800 text-white shadow-lg">
@@ -84,7 +63,7 @@ export default function Navbar() {
         </button>
 
         {/* Profile Dropdown */}
-        <ProfileDropdown user={user} handleLogout={logout} />
+        <ProfileDropdown user={user} />
 
         {!user && (
           <div className="space-x-2 hidden md:flex">

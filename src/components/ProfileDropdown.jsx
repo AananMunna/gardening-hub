@@ -1,9 +1,14 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, use } from "react";
 import { FaUser } from "react-icons/fa";
+import { AuthContext } from "../context/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
+// import { Navigate } from "react-router";
 
-const ProfileDropdown = ({ user, handleLogout }) => {
+const ProfileDropdown = ({ user }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+
 
   // 🔁 useEffect to handle outside click
   useEffect(() => {
@@ -18,6 +23,31 @@ const ProfileDropdown = ({ user, handleLogout }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const navigate = useNavigate();
+    const { logout } = use(AuthContext);
+    const handleLogout = () => {
+      logout()
+        .then(() => {
+          // console.log("User signed out successfully.");
+          Swal.fire({
+            title: "Signed out successfully.",
+            icon: "success",
+            draggable: true,
+          });
+          // // Optional: redirect to login or homepage
+          navigate("/");
+        })
+        .catch((error) => {
+          // console.error("Logout error:", error.message);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: error.message,
+          });
+        });
+    };
 
   return (
     user && (

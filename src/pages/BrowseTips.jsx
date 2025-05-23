@@ -7,30 +7,37 @@ const BrowseTips = () => {
   const [tips, setTips] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
+  console.log(selectedDifficulty);
 
+  // console.log(tips);
   useEffect(() => {
-    fetch("https://gardening-hub-server.vercel.app/tips")
+    let dynamicURL = `https://gardening-hub-server.vercel.app/tips`
+    if(selectedDifficulty != "All"){
+      dynamicURL += `?difficulty=${selectedDifficulty}`
+    }
+    // console.log(dynamicURL);
+    fetch(dynamicURL)
       .then((res) => res.json())
       .then((data) => {
-        const visibleTips = data.filter((tip) => tip.availability !== "Hidden");
-        setTips(visibleTips);
+        // const visibleTips = data.filter((tip) => tip.availability !== "Hidden");
+        setTips(data);
         setLoading(false);
       })
       .catch((err) => {
         console.error("Error fetching tips:", err);
         setLoading(false);
       });
-  }, []);
+  }, [selectedDifficulty]);
 
   if (loading) {
     return <LoadingSpinner />;
   }
 
   // Filter tips based on selected difficulty
-  const filteredTips =
-    selectedDifficulty === "All"
-      ? tips
-      : tips.filter((tip) => tip.difficulty === selectedDifficulty);
+  // const filteredTips =
+  //   selectedDifficulty === "All"
+  //     ? tips
+  //     : tips.filter((tip) => tip.difficulty === selectedDifficulty);
 
   return (
 <div className="min-h-screen bg-[#f4f7f3] dark:bg-gray-900 px-4 py-10 md:px-10">
@@ -65,7 +72,7 @@ const BrowseTips = () => {
         </tr>
       </thead>
       <tbody>
-        {filteredTips.map((tip) => (
+        {tips.map((tip) => (
           <tr
             key={tip._id}
             className="border-t border-green-100 dark:border-green-700 hover:bg-[#f0f7ee] dark:hover:bg-green-800 transition duration-200"

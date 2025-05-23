@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import { Link } from "react-router";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Swal from "sweetalert2";
+import { AuthContext } from "../context/AuthProvider";
 
 // const dummyTips = [
 //   {
@@ -25,6 +26,8 @@ const MyTips = () => {
   const [tips, setTips] = useState(null);
   const [loading, setLoading] = useState(true);
   // const [deleteId, setDeleteId] = useState(null);
+
+
 
   const handleDelete = (id) => {
     // console.log(id);
@@ -58,8 +61,11 @@ const MyTips = () => {
     });
   };
 
+  const {user} = use(AuthContext);
+  // console.log(user.email)
+
   useEffect(() => {
-    fetch("https://gardening-hub-server.vercel.app/tips")
+    fetch(`https://gardening-hub-server.vercel.app/mytips/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setTips(data);

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const gardeners = [
   {
@@ -77,6 +78,27 @@ const gardeners = [
 ];
 
 const ExploreGardeners = () => {
+    const [gardeners, setGardeners] = useState([]);
+    const [loading, setLoading] = useState(true);
+  console.log(gardeners);
+    useEffect(() => {
+      fetch("https://gardening-hub-server.vercel.app/gardeners/all")
+        .then((res) => res.json())
+        .then((data) => {
+          setGardeners(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Error fetching gardeners:", err);
+          setLoading(false);
+        });
+    }, []);
+  
+    if (loading) {
+      return (
+        <LoadingSpinner />
+      );
+    }
   return (
 <div className="bg-green-50 dark:bg-gray-900 min-h-screen py-12 px-6 md:px-16 lg:px-24">
   <h1 className="text-4xl font-extrabold text-green-900 dark:text-green-300 mb-10 text-center drop-shadow-lg">
@@ -91,14 +113,14 @@ const ExploreGardeners = () => {
       >
         <div className="relative h-56 w-full">
           <img
-            src={gardener.image}
+            src={gardener.photoUrl}
             alt={gardener.name}
             className="object-cover w-full h-full rounded-t-2xl"
             loading="lazy"
           />
           <span
             className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold ${
-              gardener.status === "Active"
+              gardener.status === "active"
                 ? "bg-green-500 text-white dark:bg-green-600"
                 : "bg-gray-400 text-gray-800 dark:bg-gray-600 dark:text-gray-200"
             }`}
@@ -112,7 +134,7 @@ const ExploreGardeners = () => {
             {gardener.name}
           </h2>
           <p className="text-green-700 dark:text-green-400 font-semibold mb-2">
-            {gardener.bio}
+            {gardener.about}
           </p>
 
           <div className="flex flex-wrap gap-4 text-sm text-green-800 dark:text-green-300 mb-4">
@@ -126,7 +148,13 @@ const ExploreGardeners = () => {
               <span className="font-semibold">Experience:</span> {gardener.experience}
             </div>
             <div>
-              <span className="font-semibold">Shared Tips:</span> {gardener.totalTips}
+              <span className="font-semibold">Location:</span> {gardener.location}
+            </div>
+            <div>
+              <span className="font-semibold">Specialty:</span> {gardener.specialty}
+            </div>
+            <div>
+              <span className="font-semibold">Shared Tips:</span> {gardener.totalSharedTips}
             </div>
           </div>
 
