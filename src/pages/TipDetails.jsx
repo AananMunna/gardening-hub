@@ -20,12 +20,13 @@ import { useState } from "react";
 const TipDetails = () => {
   const tipDetails = useLoaderData();
   const [liked, setLiked] = useState(tipDetails.totalLike);
+  
 
   const handleLiked = (id) => {
-    setLiked(liked + 1)
-    fetch(`https://gardening-hub-server.vercel.app/like/${id}`,{
-      method: 'PUT',      
-    })
+    setLiked(liked + 1);
+    fetch(`https://gardening-hub-server.vercel.app/like/${id}`, {
+      method: "PUT",
+    });
   };
 
   // console.log(tipDetails);
@@ -47,7 +48,10 @@ const TipDetails = () => {
               <h2 className="text-3xl font-bold text-[#2f4f2f] dark:text-green-400">
                 {tipDetails.title}
               </h2>
-              <p className="dark:text-white my-2">Like{liked}</p>
+              <p className="inline-flex items-center justify-center border border-gray-300 text-gray-700 text-lg font-bold px-5 py-2 rounded-md shadow-sm transition-all duration-300 ease-in-out hover:border-blue-400 hover:text-blue-600 my-2
+            dark:border-gray-600 dark:text-gray-200 dark:hover:border-blue-500 dark:hover:text-blue-400">
+  Like <span className="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">{liked}</span>
+</p>
             </div>
             <button
               onClick={() => handleLiked(tipDetails._id)}

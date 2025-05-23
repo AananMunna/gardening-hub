@@ -84,7 +84,7 @@ export default function Hero() {
         spaceBetween={0}
         slidesPerView={1}
         autoplay={{
-          delay: 6000,
+          delay: 3000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}

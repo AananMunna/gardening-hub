@@ -27,7 +27,7 @@ const MyTips = () => {
   const [loading, setLoading] = useState(true);
   // const [deleteId, setDeleteId] = useState(null);
 
-
+console.log(tips);
 
   const handleDelete = (id) => {
     // console.log(id);
@@ -100,7 +100,7 @@ const MyTips = () => {
           </tr>
         </thead>
 
-        {tips ? (
+        {tips.length ? (
           <tbody>
             {tips.map((tip) => (
               <tr
