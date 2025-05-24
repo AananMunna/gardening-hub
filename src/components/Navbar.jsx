@@ -27,9 +27,9 @@ export default function Navbar() {
       {/* Logo */}
       <div className="flex items-center space-x-3">
         <FaLeaf className="text-3xl text-emerald-300 dark:text-lime-400" />
-        <span className="text-2xl font-bold font-serif tracking-wider text-white dark:text-lime-100">
+        <Link to='/' className="text-2xl font-bold font-serif tracking-wider text-white dark:text-lime-100">
           GardenHub
-        </span>
+        </Link>
       </div>
 
       {/* Desktop Navigation */}

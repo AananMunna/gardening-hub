@@ -19,7 +19,6 @@ const Register = () => {
     const photoURL = form.photoURL.value;
     const password = form.password.value;
 
-    // Clear old errors
     setError("");
 
     register(email, password)
@@ -37,7 +36,7 @@ const Register = () => {
           icon: "success",
           draggable: true,
         });
-        navigate("/"); // Navigate to home or dashboard
+        navigate("/"); 
       })
       .catch((error) => {
         console.error("Registration error:", error.message);

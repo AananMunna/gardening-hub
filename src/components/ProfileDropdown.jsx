@@ -3,14 +3,13 @@ import { FaUser } from "react-icons/fa";
 import { AuthContext } from "../context/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
-// import { Navigate } from "react-router";
 
 const ProfileDropdown = ({ user }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 
 
-  // 🔁 useEffect to handle outside click
+  //  useEffect to handle outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

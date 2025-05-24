@@ -7,7 +7,7 @@ const BrowseTips = () => {
   const [tips, setTips] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
-  console.log(selectedDifficulty);
+  // console.log(selectedDifficulty);
 
   // console.log(tips);
   useEffect(() => {
@@ -19,7 +19,6 @@ const BrowseTips = () => {
     fetch(dynamicURL)
       .then((res) => res.json())
       .then((data) => {
-        // const visibleTips = data.filter((tip) => tip.availability !== "Hidden");
         setTips(data);
         setLoading(false);
       })
@@ -32,12 +31,6 @@ const BrowseTips = () => {
   if (loading) {
     return <LoadingSpinner />;
   }
-
-  // Filter tips based on selected difficulty
-  // const filteredTips =
-  //   selectedDifficulty === "All"
-  //     ? tips
-  //     : tips.filter((tip) => tip.difficulty === selectedDifficulty);
 
   return (
 <div className="min-h-screen bg-[#f4f7f3] dark:bg-gray-900 px-4 py-10 md:px-10">

@@ -1,4 +1,3 @@
-// components/LoadingSpinner.jsx
 import { motion } from "framer-motion";
 
 const leafVariants = {
@@ -39,7 +38,7 @@ const LoadingSpinner = () => {
 
     <div className="absolute inset-0 flex items-center justify-center">
       <span className="text-green-700 font-semibold tracking-wide text-lg font-serif dark:text-green-300">
-        Growing...
+        Loading...
       </span>
     </div>
   </motion.div>

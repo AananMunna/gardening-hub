@@ -5,29 +5,11 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthProvider";
 
-// const dummyTips = [
-//   {
-//     id: "1",
-//     title: "Grow Tomatoes Indoors",
-//     category: "Indoor Gardening",
-//     image: "https://img.freepik.com/free-photo/ripe-red-tomatoes-greenhouse_1150-11052.jpg",
-//     availability: "Public",
-//   },
-//   {
-//     id: "2",
-//     title: "DIY Compost Bin",
-//     category: "Composting",
-//     image: "https://img.freepik.com/free-photo/close-up-hands-holding-compost_23-2149021694.jpg",
-//     availability: "Hidden",
-//   },
-// ];
-
 const MyTips = () => {
   const [tips, setTips] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const [deleteId, setDeleteId] = useState(null);
 
-console.log(tips);
+// console.log(tips);
 
   const handleDelete = (id) => {
     // console.log(id);

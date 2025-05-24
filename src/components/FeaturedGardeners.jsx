@@ -5,7 +5,7 @@ import LoadingSpinner from "./LoadingSpinner";
 export default function FeaturedGardeners() {
   const [gardeners, setGardeners] = useState([]);
   const [loading, setLoading] = useState(true);
-console.log(gardeners);
+// console.log(gardeners);
   useEffect(() => {
     fetch("https://gardening-hub-server.vercel.app/gardeners/active")
       .then((res) => res.json())

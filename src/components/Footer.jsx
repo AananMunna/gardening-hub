@@ -1,4 +1,5 @@
 import { FaLeaf, FaFacebook, FaInstagram, FaTwitter, FaYoutube, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 export default function Footer() {
   return (
@@ -15,21 +16,21 @@ export default function Footer() {
           <span className="text-2xl font-bold font-serif text-white dark:text-gray-100">GardenHub</span>
         </div>
         <p className="text-green-200 dark:text-green-400">
-          Cultivating a community of passionate gardeners since 2023.
+          Cultivating Link community of passionate gardeners since 2023.
         </p>
         <div className="flex space-x-4">
-          <a href="#" className="text-green-300 hover:text-white dark:hover:text-emerald-400 transition-colors text-xl">
+          <Link href="https://www.facebook.com/" target='_blank' className="text-green-300 hover:text-white dark:hover:text-emerald-400 transition-colors text-xl">
             <FaFacebook />
-          </a>
-          <a href="#" className="text-green-300 hover:text-white dark:hover:text-emerald-400 transition-colors text-xl">
+          </Link>
+          <Link href="https://www.instagram.com/" target='_blank' className="text-green-300 hover:text-white dark:hover:text-emerald-400 transition-colors text-xl">
             <FaInstagram />
-          </a>
-          <a href="#" className="text-green-300 hover:text-white dark:hover:text-emerald-400 transition-colors text-xl">
+          </Link>
+          <Link href="https://x.com/home" target='_blank' className="text-green-300 hover:text-white dark:hover:text-emerald-400 transition-colors text-xl">
             <FaTwitter />
-          </a>
-          <a href="#" className="text-green-300 hover:text-white dark:hover:text-emerald-400 transition-colors text-xl">
+          </Link>
+          <Link href="https://www.youtube.com/" target='_blank' className="text-green-300 hover:text-white dark:hover:text-emerald-400 transition-colors text-xl">
             <FaYoutube />
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -37,10 +38,10 @@ export default function Footer() {
       <div className="space-y-4">
         <h3 className="text-xl font-bold border-b border-green-700 dark:border-emerald-500 pb-2 text-white dark:text-gray-100">Quick Links</h3>
         <ul className="space-y-3">
-          <li><a href="#" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Home</a></li>
-          <li><a href="#" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Explore Gardeners</a></li>
-          <li><a href="#" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Browse Tips</a></li>
-          <li><a href="#" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Share a Tip</a></li>
+          <li><Link to="/" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Home</Link></li>
+          <li><Link to="/ExploreGardeners" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Explore Gardeners</Link></li>
+          <li><Link to="/BrowseTips" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Browse Tips</Link></li>
+          <li><Link to="/ShareTip" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Share Link Tip</Link></li>
         </ul>
       </div>
 
@@ -48,10 +49,10 @@ export default function Footer() {
       <div className="space-y-4">
         <h3 className="text-xl font-bold border-b border-green-700 dark:border-emerald-500 pb-2 text-white dark:text-gray-100">Resources</h3>
         <ul className="space-y-3">
-          <li><a href="#" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Gardening Blog</a></li>
-          <li><a href="#" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Seasonal Guides</a></li>
-          <li><a href="#" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Plant Care Tips</a></li>
-          <li><a href="#" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Community Events</a></li>
+          <li><Link to="/ExploreGardeners" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Gardening Blog</Link></li>
+          <li><Link to="/Seasonal" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Seasonal Guides</Link></li>
+          <li><Link to="/Seasonal" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Plant Care Tips</Link></li>
+          <li><Link to="/Seasonal" className="hover:text-emerald-300 dark:hover:text-emerald-400 transition-colors flex items-center space-x-2 text-green-200 dark:text-green-400">Community Events</Link></li>
         </ul>
       </div>
 
@@ -84,9 +85,9 @@ export default function Footer() {
         &copy; {new Date().getFullYear()} GardenHub. All rights reserved.
       </p>
       <div className="flex space-x-6">
-        <a href="#" className="text-green-300 dark:text-emerald-400 hover:text-white dark:hover:text-white text-sm transition-colors">Privacy Policy</a>
-        <a href="#" className="text-green-300 dark:text-emerald-400 hover:text-white dark:hover:text-white text-sm transition-colors">Terms of Service</a>
-        <a href="#" className="text-green-300 dark:text-emerald-400 hover:text-white dark:hover:text-white text-sm transition-colors">Cookie Policy</a>
+        <Link to="/Seasonal" className="text-green-300 dark:text-emerald-400 hover:text-white dark:hover:text-white text-sm transition-colors">Privacy Policy</Link>
+        <Link to="/Seasonal" className="text-green-300 dark:text-emerald-400 hover:text-white dark:hover:text-white text-sm transition-colors">Terms of Service</Link>
+        <Link to="/Seasonal" className="text-green-300 dark:text-emerald-400 hover:text-white dark:hover:text-white text-sm transition-colors">Cookie Policy</Link>
       </div>
     </div>
   </div>

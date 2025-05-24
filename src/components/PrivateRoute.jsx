@@ -1,4 +1,3 @@
-// PrivateRoute.jsx
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router";
 import { AuthContext } from './../context/AuthProvider';
@@ -9,7 +8,7 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <LoadingSpinner />; // You can show a spinner here
+    return <LoadingSpinner />; 
   }
 
   if (!user) {

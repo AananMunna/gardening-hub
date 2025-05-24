@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 import { Typewriter } from "react-simple-typewriter";
 import { Fade, Slide } from "react-awesome-reveal";
 
-// High-quality gardening event images
 const slideData = [
   {
     image:
@@ -147,9 +146,6 @@ export default function Hero() {
                         {slide.title}
                       </h1>
                     </Fade>
-                    {/* <h2 className="text-2xl md:text-3xl font-semibold text-green-700 dark:text-green-300 mb-4">
-                  {slide.subtitle}
-                </h2> */}
                     <Slide direction="up" triggerOnce delay={300}>
                       <h2 className="text-2xl md:text-3xl font-semibold text-green-700 dark:text-green-300 mb-4">
                         <Typewriter

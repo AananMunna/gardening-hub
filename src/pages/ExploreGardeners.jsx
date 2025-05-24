@@ -2,85 +2,11 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-const gardeners = [
-  {
-    id: 1,
-    name: "Alice Green",
-    age: 34,
-    gender: "Female",
-    status: "Active",
-    experience: "10 years",
-    image:
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=400&q=80",
-    totalTips: 42,
-    bio: "Specializes in urban gardening and sustainable practices.",
-  },
-  {
-    id: 2,
-    name: "Mark Bloom",
-    age: 41,
-    gender: "Male",
-    status: "Active",
-    experience: "15 years",
-    image:
-      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=400&q=80",
-    totalTips: 58,
-    bio: "Passionate about vertical gardening and hydroponics.",
-  },
-  {
-    id: 3,
-    name: "Emma Roots",
-    age: 29,
-    gender: "Female",
-    status: "Inactive",
-    experience: "5 years",
-    image:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80",
-    totalTips: 20,
-    bio: "Expert in composting and organic fertilizers.",
-  },
-  {
-    id: 4,
-    name: "John Leaf",
-    age: 38,
-    gender: "Male",
-    status: "Active",
-    experience: "12 years",
-    image:
-      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=400&q=80",
-    totalTips: 35,
-    bio: "Focused on landscape gardening and native plants.",
-  },
-  {
-    id: 5,
-    name: "Sophia Bloom",
-    age: 45,
-    gender: "Female",
-    status: "Active",
-    experience: "20 years",
-    image:
-      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80",
-    totalTips: 70,
-    bio: "Gardening coach specializing in greenhouse setups.",
-  },
-  {
-    id: 6,
-    name: "David Sprout",
-    age: 33,
-    gender: "Male",
-    status: "Inactive",
-    experience: "8 years",
-    image:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80",
-    totalTips: 28,
-    bio: "Enthusiast of permaculture and soil health.",
-  },
-];
 
 const ExploreGardeners = () => {
     const [gardeners, setGardeners] = useState([]);
     const [loading, setLoading] = useState(true);
-  console.log(gardeners);
+  // console.log(gardeners);
     useEffect(() => {
       fetch("https://gardening-hub-server.vercel.app/gardeners/all")
         .then((res) => res.json())
