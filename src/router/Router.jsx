@@ -11,6 +11,8 @@ import TipDetails from "./../pages/TipDetails";
 import PrivateRoute from "../components/PrivateRoute";
 import UpdateTip from "../pages/UpdateTip";
 import NotFound from "./../pages/NotFound";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Overview from "../pages/Overview";
 
 export const router = createBrowserRouter([
   {
@@ -20,14 +22,14 @@ export const router = createBrowserRouter([
       { index: true, Component: App },
       { path: "ExploreGardeners", Component: ExploreGardeners },
       { path: "BrowseTips", Component: BrowseTips },
-      {
-        path: "ShareTip",
-        element: (
-          <PrivateRoute>
-            <ShareTip></ShareTip>
-          </PrivateRoute>
-        ),
-      },
+      // {
+      //   path: "ShareTip",
+      //   element: (
+      //     <PrivateRoute>
+      //       <ShareTip></ShareTip>
+      //     </PrivateRoute>
+      //   ),
+      // },
       {
         path: "MyTips",
         element: (
@@ -56,9 +58,43 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       { path: "login", Component: Login },
       { path: "register", Component: Register },
       { path: "*", Component: NotFound },
+    ],
+  },
+  {
+    path: "dashboard",
+    Component: DashboardLayout,
+    children: [
+    {
+      index: true , Component: Overview
+    },
+      {
+        path: "/dashboard/overView",
+        element: (
+          <PrivateRoute>
+            <Overview></Overview>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/ShareTip",
+        element: (
+          <PrivateRoute>
+            <ShareTip></ShareTip>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/MyTips",
+        element: (
+          <PrivateRoute>
+            <MyTips></MyTips>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   { path: "*", Component: NotFound },

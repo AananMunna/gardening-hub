@@ -1,16 +1,18 @@
 import { Link } from "react-router";
-import { Eye } from "lucide-react";
+import { Eye, Turtle } from "lucide-react";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const BrowseTips = () => {
   const [tips, setTips] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [insideLoading, setInsideLoading] = useState(true);
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
   // console.log(selectedDifficulty);
 
   // console.log(tips);
   useEffect(() => {
+    setInsideLoading(true)
     let dynamicURL = `https://gardening-hub-server.vercel.app/tips`
     if(selectedDifficulty != "All"){
       dynamicURL += `?difficulty=${selectedDifficulty}`
@@ -25,6 +27,8 @@ const BrowseTips = () => {
       .catch((err) => {
         console.error("Error fetching tips:", err);
         setLoading(false);
+            setInsideLoading(false)
+
       });
   }, [selectedDifficulty]);
 
@@ -33,13 +37,13 @@ const BrowseTips = () => {
   }
 
   return (
-<div className="min-h-screen bg-[#f4f7f3] dark:bg-gray-900 px-4 py-10 md:px-10">
+<div className="min-h-screen bg-[#f4f7f3] dark:bg-gray-900 py-10">
   <h2 className="text-3xl md:text-4xl font-bold text-[#345c2c] dark:text-green-300 mb-6 text-center">
     🌿 Browse Public Gardening Tips
   </h2>
 
   {/* Difficulty Filter */}
-  <div className="mb-6 flex justify-center">
+  <div className="mb-6 flex justify-center ">
     <select
       className="px-4 py-2 border border-green-300 dark:border-green-600 rounded-md shadow-sm text-green-900 dark:text-green-200 bg-white dark:bg-gray-800"
       value={selectedDifficulty}
@@ -52,7 +56,7 @@ const BrowseTips = () => {
     </select>
   </div>
 
-  <div className="overflow-x-auto">
+  <div className="overflow-x-auto  container mx-auto px-4">
     <table className="min-w-full border border-green-200 dark:border-green-700 bg-white dark:bg-gray-800 shadow-md rounded-xl overflow-hidden">
       <thead className="bg-[#d4e8cc] dark:bg-green-900 text-[#2f4f2f] dark:text-green-300 uppercase text-sm md:text-base">
         <tr>
@@ -64,7 +68,7 @@ const BrowseTips = () => {
           <th className="py-4 px-6 text-left">Action</th>
         </tr>
       </thead>
-      <tbody>
+<tbody>
         {tips.map((tip) => (
           <tr
             key={tip._id}

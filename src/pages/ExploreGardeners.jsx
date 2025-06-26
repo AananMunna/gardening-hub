@@ -26,22 +26,22 @@ const ExploreGardeners = () => {
       );
     }
   return (
-<div className="bg-green-50 dark:bg-gray-900 min-h-screen py-12 px-6 md:px-16 lg:px-24">
+<div className="bg-green-50 dark:bg-gray-900 min-h-screen py-12">
   <h1 className="text-4xl font-extrabold text-center text-green-800 dark:text-green-300 mb-12 drop-shadow-md">
     🌿 Explore Gardeners
   </h1>
 
-  <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+  <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  container px-4 mx-auto">
     {gardeners.map((gardener) => (
       <div
         key={gardener.id}
         className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:scale-105 duration-300 overflow-hidden"
       >
-        <div className="relative h-60 w-full">
+        <div className="relative  w-full">
           <img
             src={gardener.photoUrl}
             alt={gardener.name}
-            className="object-cover w-full h-full rounded-t-2xl"
+            className="object-cover w-full h-30 rounded-t-2xl"
             loading="lazy"
           />
           <span
@@ -59,22 +59,22 @@ const ExploreGardeners = () => {
           <h2 className="text-2xl font-semibold text-green-900 dark:text-green-300 mb-2">
             {gardener.name}
           </h2>
-          <p className="text-green-700 dark:text-green-400 font-medium mb-4">
+          {/* <p className="text-green-700 dark:text-green-400 font-medium mb-4">
             {gardener.about}
-          </p>
+          </p> */}
 
           <ul className="space-y-1 text-sm text-green-800 dark:text-green-300">
-            <li><strong>Age:</strong> {gardener.age}</li>
+            {/* <li><strong>Age:</strong> {gardener.age}</li>
             <li><strong>Gender:</strong> {gardener.gender}</li>
             <li><strong>Experience:</strong> {gardener.experience}</li>
             <li><strong>Location:</strong> {gardener.location}</li>
-            <li><strong>Specialty:</strong> {gardener.specialty}</li>
+            <li><strong>Specialty:</strong> {gardener.specialty}</li> */}
             <li><strong>Shared Tips:</strong> {gardener.totalSharedTips}</li>
           </ul>
 
           <button
             type="button"
-            className="mt-6 w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 text-white font-semibold py-2 rounded-lg shadow-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="mt-6 px-2 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 text-white font-semibold py-1 rounded-lg shadow-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400"
             onClick={() =>
               Swal.fire({
                 title: "Private Profile",
