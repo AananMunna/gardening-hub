@@ -1,6 +1,7 @@
 # 🌿 GardenConnect – A Gardening Community & Resource Hub
 
 **Live Site URL:** [https://gardening-hub-a68ec.web.app/](https://gardening-hub-a68ec.web.app/)  
+**Server Repo URL:** [https://github.com/AananMunna/gardening-hub-server](https://github.com/AananMunna/gardening-hub-server)
 
 
 ---
