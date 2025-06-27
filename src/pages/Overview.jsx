@@ -1,4 +1,4 @@
-import { use } from "react";
+import { use, useEffect, useState } from "react";
 import {
   FiUser,
   FiList,
@@ -10,27 +10,58 @@ import {
 import { AuthContext } from "../context/AuthProvider";
 
 const Overview = () => {
+
+  const [tips, setTips ] = useState(null)
+  const [myTips, setMyTips ] = useState(null)
+  // console.log(myTips);
+
+  
+  // console.log(tips);
+    useEffect(() => {
+      let dynamicURL = `https://gardening-hub-server.vercel.app/tips`
+      fetch(dynamicURL)
+        .then((res) => res.json())
+        .then((data) => {
+          setTips(data);
+        })
+        .catch((err) => {
+          console.error("Error fetching tips:", err);
+  
+        });
+    }, []);
+
+      useEffect(() => {
+    fetch(`https://gardening-hub-server.vercel.app/mytips/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setMyTips(data);
+      })
+      .catch((err) => {
+        console.error("Error fetching gardeners:", err);
+      });
+  }, []);
+
   const stats = [
     {
-      label: "Total Items",
-      value: "48+",
+      label: "Total Tips",
+      value: tips?.length,
       icon: <FiList />,
       color: "from-[#a7f3d0] to-[#34d399]",
     },
     {
       label: "My Tips",
-      value: "12+",
+      value: myTips?.length,
       icon: <FiFolder />,
       color: "from-[#bbf7d0] to-[#22c55e]",
     },
     {
-      label: "Categories",
+      label: "Public Tips",
       value: "7",
       icon: <FiUsers />,
       color: "from-[#d9f99d] to-[#84cc16]",
     },
     {
-      label: "Total Users",
+      label: "Private Tips",
       value: "245+",
       icon: <FiUser />,
       color: "from-[#bef264] to-[#65a30d]",
