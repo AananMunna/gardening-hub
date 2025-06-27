@@ -39,6 +39,29 @@ const communityPosts = [
 
 export default function CommunitySpotlight() {
   return (
+<>
+<section className="py-16 px-6 bg-green-50 dark:bg-gray-900">
+  <div className="max-w-3xl mx-auto text-center">
+    <h2 className="text-3xl font-bold text-green-700 dark:text-green-300 mb-6">🌱 Daily Growth Affirmations</h2>
+    <p className="text-gray-700 dark:text-gray-300 text-lg mb-10">Let your mind grow alongside your garden.</p>
+
+    <div className="space-y-8 text-left">
+      <blockquote className="text-xl text-green-900 dark:text-green-200 border-l-4 border-green-400 dark:border-green-500 pl-4 italic">
+        “Just like my plants, I don’t need to rush — I grow beautifully in my own time.”
+      </blockquote>
+      <blockquote className="text-xl text-green-900 dark:text-green-200 border-l-4 border-green-400 dark:border-green-500 pl-4 italic">
+        “Even on cloudy days, roots are growing beneath the surface.”
+      </blockquote>
+      <blockquote className="text-xl text-green-900 dark:text-green-200 border-l-4 border-green-400 dark:border-green-500 pl-4 italic">
+        “Every fallen leaf is part of my progress — I let go to grow.”
+      </blockquote>
+      <blockquote className="text-xl text-green-900 dark:text-green-200 border-l-4 border-green-400 dark:border-green-500 pl-4 italic">
+        “I nurture my surroundings, and they nourish me in return.”
+      </blockquote>
+    </div>
+  </div>
+</section>
+
     <section className="py-16 bg-white dark:bg-gray-900">
   <div className="container mx-auto px-4">
     <div className="text-center mb-12">
@@ -119,5 +142,33 @@ export default function CommunitySpotlight() {
   </div>
 </section>
 
+<section className="py-16 px-4 bg-green-50 dark:bg-gray-800">
+  <div className="max-w-4xl mx-auto">
+    <h2 className="text-3xl font-bold text-green-800 dark:text-green-300 text-center mb-8">Gardener’s Q&A</h2>
+    <div className="space-y-6">
+      {[
+        {
+          q: "How often should I water my succulents?",
+          a: "Succulents prefer dry soil. Water once every 10-14 days, and ensure good drainage.",
+        },
+        {
+          q: "What vegetables grow best in small spaces?",
+          a: "Tomatoes, radishes, lettuce, and spinach are great choices for limited space gardens.",
+        },
+        {
+          q: "How do I naturally get rid of garden pests?",
+          a: "Neem oil, garlic spray, and companion planting can help repel common pests.",
+        },
+      ].map((faq, index) => (
+        <div key={index} className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow">
+          <h3 className="text-xl font-semibold text-green-700 dark:text-green-400">{faq.q}</h3>
+          <p className="mt-2 text-gray-700 dark:text-gray-300">{faq.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+</>
   );
 }

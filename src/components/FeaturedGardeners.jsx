@@ -26,6 +26,8 @@ export default function FeaturedGardeners() {
   }
 
   return (
+    <>
+    
     <section className="py-16 bg-gray-100 dark:bg-gray-900">
   <div className="container mx-auto px-4">
     {/* Header */}
@@ -100,6 +102,7 @@ export default function FeaturedGardeners() {
     </div>
   </div>
 </section>
+    </>
 
   );
 }
